@@ -1,0 +1,31 @@
+
+{% extends 'app_posting/base.html'%}
+{%block title%}
+<title>ALLPOST</title>
+    {% endblock %}
+
+{% block content%}
+
+{% if comments %}
+<h4>Comments : </h4>
+    {% for comment in comments %}
+<div class="comments">
+        <p>{{comment.post}}</p>
+        <p>comment:{{comment.content}}</p>
+        <p>{{comment.time}}</p>
+        <p>commented_by:{{comment.user}}</p>
+    </div>
+    {% endfor %}
+
+{% else %}
+        <h4>no comments for this post</h4>
+{% endif %}
+
+{% if user.is_authenticated %}<br>
+<form method="post">
+    {% csrf_token %}
+    {{f1.as_p}}
+    <input type="submit">
+</form>
+{% endif %}
+{%endblock%}

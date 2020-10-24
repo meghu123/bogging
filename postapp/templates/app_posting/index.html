@@ -1,0 +1,47 @@
+{% extends 'app_posting/base.html'%}
+{%block title%}
+<title>index</title>
+    {% endblock %}
+
+
+{% block content%}
+<h5>
+<p>Welcome {{user}}
+</h5>
+<a href="{% url 'postview' %}" class="button">Click here to add Post</a>
+<table class="table table-striped">
+    {% for i in data %}
+        <tr>
+            <th>{{i.Create_by}}</th>
+            <th>{{i.title}}</th>
+            <th>{{i.description}}</th>
+
+            <th>{{i.content}}</th>
+            <th>{% for s in i.comment_set.all %}
+                {{s.content}}{% endfor %}</th>
+            <td><a href="{% url 'update' i.pk %}">
+             <input type="button" class="btn btn-success"  value="update" name="up1">
+        </a></td>
+   <td> <a href="{% url 'delete' i.pk %}">
+       <input type="button"  class="btn btn-default btn-danger" value="delete" name="de1" >
+        </a>
+        </tr>
+
+      {% endfor %}
+
+</table>
+
+<br><br>
+<hr>
+<!--<div class="main-comment-section">-->
+<!--    {{comments.count}}-->
+<!--    {% for comment in comments %}-->
+<!--    <blockquote class="blockquote">-->
+<!--  <p class="mb-0">{{comment.content}}</p>-->
+<!--  <footer class="blockquote-footer">by <cite title="Source Title">{{comment.user}}</cite></footer>-->
+<!--</blockquote>-->
+<!--    {% endfor %}-->
+<!--</div>-->
+
+
+{%endblock%}

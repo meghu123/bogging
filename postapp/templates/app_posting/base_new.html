@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+     write html code here...!!
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'app_posting/css/mystyle.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+    form
+    {
+    margin: 0 auto;
+    }
+</style>
+</head>
+<body>
+
+    <div class="col-sm-3 sidenav">
+      <h4>Creative's Blog</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="{% url 'home' %}">Home</a></li>&nbsp;&nbsp;&nbsp;
+          {% if user.is_authenticated %}
+                <li><a>hello{{user.username}}</a></li>
+                 <li><a href="{% url 'profile' %} ">Profile</a></li>
+                <li><a href="{% url 'logout' %} ">Logout</a></li>
+          {% else %}
+                <li><a href="{% url 'login' %} ">Login</a></li>&nbsp;&nbsp;&nbsp;
+                <li><a href="{% url 'register' %} ">Register</a></li>
+          {% endif %}
+
+      </ul><br>
+      <div class="input-group">
+          <form name="myform" method="post">
+              {% csrf_token %}
+        <input type="text"  name='find' class="form-control" placeholder="Search Blog..">
+          </form>
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div>
+    </div>
+
+
+
+{% block content%}
+ write html code here...!!
+{%endblock%}
+
+      <footer>
+
+          <h5>@blog is copyright</h5>
+          </footer>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+{% extends 'app_posting/base.html'%}
+{%block title%}
+<title>delete</title>
+    {% endblock %}
+
+
+{% block content%}
+
+<form method="post" >
+    {% csrf_token %}
+    Are you sure to delete {{obj.title}}?
+    <button type="submit">Confirm delete</button>
+</form>
+{%endblock%}

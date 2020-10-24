@@ -1,0 +1,19 @@
+{% extends 'app_posting/base.html'%}
+{%block title%}
+<title>LOGIN</title>
+    {% endblock %}
+
+
+{% block content%}
+<div class="container">
+<h3 style="text-align: center;">LOGIN</h3>
+</div>
+<form method="post" style="width:500px" class="jumbotron">
+    {% csrf_token%}
+    USERNAME:<br>
+    <input type="text" name="uname"><br>
+    PASSWORD:<br>
+    <input type="password" name="pass"><br><br><br><br>
+    <input type="submit" class="btn btn-primary btn-block">
+</form>
+{%endblock%}

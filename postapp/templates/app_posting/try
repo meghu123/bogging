@@ -1,0 +1,52 @@
+{% extends 'app_posting/base.html'%}
+{%block title%}
+<title>HOME</title>
+    {% endblock %}
+
+
+{% block content%}
+
+<div class="col-sm-9">
+<h4>HOME<br>
+</h4>
+<h2><p><marquee>DASHBOARD:</marquee></p></h2>
+<br><br><br><br><br><br><br><br><br><br>
+                <fieldset>
+
+    <div style="width:700px; margin-left:400px">
+
+<table  border="1" width="50%" class="table table-striped" >
+{% for i in stud %}
+    <tr>
+    <th>Title:{{i.title}}</th>
+    <td colspan="5">{{i.description}}</td>
+
+        <td>Created By:@{{i.Create_by}}</td>
+            <td>Tags:#{{i.tags}}</td>
+            <td>Comment:
+                {{i.comment_set.all.count}}
+          {% for s in i.comment_set.all %}
+                {{s.content}}{% endfor %}</td>
+
+         <td><a href="{% url 'comment' i.id %}">
+             <input type="button" class="btn btn-success"  value="ADD COMMENT" name="up1">
+        </a></td>
+
+  </tr>
+
+{% endfor %}
+
+</table>
+
+    </div>
+</fieldset>
+
+<h4>Leave a Comment:</h4>
+      <form role="form">
+        <div class="form-group">
+          <textarea class="form-control" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+      <br><br>
+{%endblock%}

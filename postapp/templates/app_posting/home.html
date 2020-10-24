@@ -1,0 +1,57 @@
+{% extends 'app_posting/base.html'%}
+{%block title%}
+<title>HOME</title>
+    {% endblock %}
+
+
+{% block content%}
+
+<h4>HOME<br>
+</h4>
+<h2><p><marquee>DASHBOARD:</marquee></p></h2>
+<br><br>
+
+
+<div class="container-fluid">
+    <div class="row">
+    {% for i in stud %}
+        <div class="col-md-6">
+            <div class="img-thumbnail">
+                Title:<a href="#">{{i.title}}</a><small style="float:right">{{i.name}}</small>
+                {% if i.tags.count %}
+                    Tags:#{% for p in i.tags.all %}
+                     #{{p.tag_name}}
+                    {% endfor %}<br>
+                {% endif %}
+                <hr>
+                {{i.description}}<br><br>
+                <hr>
+                <td>Comment:<small>{{i.comment_set.all.count}}</small><br>
+          {% for s in i.comment_set.all %}
+                {{s.content}}<small style="float:right">{{s.user}}</small><br>{% endfor %}</td>
+
+         <td><a href="{% url 'comment' i.id %}">
+             <input type="button" class="btn btn-success"  value="ADD COMMENT" name="up1">
+        </a></td>
+            </div>
+
+<br>
+        </div>
+        <br><br><br>
+    </div>
+
+</div>
+
+{% endfor %}
+
+
+
+<h4>Leave a Comment:</h4>
+      <form role="form">
+        <div class="form-group">
+          <textarea class="form-control" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+      <br><br>
+{%endblock%}

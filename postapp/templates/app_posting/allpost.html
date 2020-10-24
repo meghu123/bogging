@@ -1,0 +1,16 @@
+{% extends 'app_posting/base.html'%}
+{%block title%}
+<title>ALLPOST</title>
+    {% endblock %}
+
+
+{% block content%}
+<h3 style="text-align: center;">ADD POST</h3>
+<form method="post" style="width:500px" class="jumbotron">
+    {% csrf_token %}
+    {{f1.as_p}}
+    <br>
+    <input type="submit" class="btn btn-primary btn-block">
+
+</form>
+{%endblock%}
